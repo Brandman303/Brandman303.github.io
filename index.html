@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Open-Sans" rel="stylesheet" />
+    <style>
+        html {
+            font-size: 10px;
+            font-family: "Open-Sans", sans-serif;
+            background-color: #18301b;
+        }
+
+        body {
+            width: 600px;
+            margin: 0 auto;
+            background-color: #15141a;
+            padding: 0 20px 20px 20px;
+            border: 5px solid black;
+        }
+
+        h1 {
+            margin: 0;
+            padding: 20px 0;
+            color: rgb(239, 129, 40);
+            text-shadow: 3px 3px 1px rgb(0, 0, 0);
+            font-size: 60px;
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        p, li {
+            color: white;
+            font-size: 16px;
+            line-height: 2;
+            letter-spacing: 1px;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>My test page</title>
+</head>
+<body>
+    <h1>Brandon's Website</h1>
+    <img src="images\cat.gif" alt="Cat with motion" />
+    <p>Greetings! This website is a first attempt...</p>
+    <ul>
+        <li>HTML,</li>
+        <li>CSS,</li>
+        <li>JavaScript,</li>
+        <li>and Java</li>
+    </ul>
+    <p>Furthermore, here is a link to my <a href="https://github.com/Brandman303">GitHub</a> for some of my work with Java.</p>
+    <button>Change user</button>
+
+    <script>
+        const myImage = document.querySelector("img");
+
+        myImage.onclick = () => {
+            const mySrc = myImage.getAttribute("src");
+            if (mySrc === "images/cat.gif") {
+                myImage.setAttribute("src", "images/elGato.jpg");
+            } else {
+                myImage.setAttribute("src", "images/cat.gif");
+            }
+        };
+
+        let myButton = document.querySelector("button");
+        let myHeading = document.querySelector("h1");
+
+        function setUserName() {
+            const myName = prompt("Please enter your name.");
+            if (!myName) {
+                setUserName();
+            } else {
+                localStorage.setItem("name", myName);
+                myHeading.textContent = `Welcome, ${myName}`;
+            }
+        }
+
+        if (!localStorage.getItem("name")) {
+            setUserName();
+        } else {
+            const storedName = localStorage.getItem("name");
+            myHeading.textContent = `Welcome, ${storedName}`;
+        }
+
+        myButton.onclick = () => {
+            setUserName();
+        };
+    </script>
+</body>
+</html>
